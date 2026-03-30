@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이현수 — Unity Contents Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #0a0a0c;
+  --bg2:    #111116;
+  --bg3:    #18181f;
+  --line:   rgba(255,255,255,0.07);
+  --linehi: rgba(255,255,255,0.14);
+  --text:   #e8e8f0;
+  --muted:  #6b6b7e;
+  --accent: #7b61ff;
+  --teal:   #00e5c8;
+  --mono:   'Space Mono', monospace;
+  --sans:   'Syne', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(10,10,12,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); text-decoration: none; letter-spacing: 0.08em; }
+.nav-logo span { color: var(--teal); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 6rem 3rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero-inner {
+  max-width: 1100px; width: 100%; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  position: relative; z-index: 2;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 50%, black 20%, transparent 100%);
+}
+.hero-orb {
+  position: absolute; right: 8%; top: 15%; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(123,97,255,0.18) 0%, rgba(0,229,200,0.06) 50%, transparent 70%);
+  border-radius: 50%; filter: blur(40px); animation: float 8s ease-in-out infinite;
+}
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-28px); } }
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--teal);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--teal); }
+.hero-name { font-size: clamp(3rem, 5.5vw, 5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 1rem; }
+.hero-name .grad { background: linear-gradient(135deg, var(--accent), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.9; }
+.hero-sub em { color: var(--accent); font-style: normal; }
+.hero-desc { font-size: 0.975rem; color: var(--muted); max-width: 460px; margin-bottom: 2.5rem; line-height: 1.9; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  padding: 0.75rem 1.75rem; font-family: var(--mono); font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  border: none; cursor: pointer; transition: all 0.2s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn-p { background: var(--accent); color: #fff; }
+.btn-p:hover { background: var(--teal); color: var(--bg); box-shadow: 0 6px 20px rgba(0,229,200,0.3); }
+.btn-o { background: transparent; color: var(--text); border: 1px solid var(--linehi); }
+.btn-o:hover { border-color: var(--accent); color: var(--accent); }
+.hero-right { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.code-card { background: var(--bg2); border: 1px solid var(--line); width: 100%; max-width: 460px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.5); animation: float 6s ease-in-out infinite; }
+.code-bar { background: var(--bg3); padding: 0.7rem 1rem; display: flex; align-items: center; gap: 0.45rem; border-bottom: 1px solid var(--line); }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot:nth-child(1){background:#ff5f57;} .dot:nth-child(2){background:#febc2e;} .dot:nth-child(3){background:#28c840;}
+.code-file { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-left: auto; }
+.code-body { padding: 1.25rem 1.5rem; font-family: var(--mono); font-size: 0.75rem; line-height: 1.85; overflow-x: auto; max-height: 420px; overflow-y: auto; }
+.ln { color: var(--muted); user-select: none; margin-right: 1rem; }
+.kw { color: #c792ea; } .cl { color: #82aaff; } .fn { color: var(--teal); } .cm { color: #546e7a; font-style: italic; }
+
+/* SECTION BASE */
+section { padding: 7rem 3rem; }
+.inner { max-width: 1100px; margin: 0 auto; }
+.s-label { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
+.s-label::before { content: '//'; color: var(--muted); }
+.s-title { font-size: clamp(1.9rem, 3.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.75rem; line-height: 1.1; }
+.s-bar { width: 44px; height: 2px; background: linear-gradient(90deg, var(--accent), var(--teal)); margin-bottom: 3.5rem; }
+
+/* ABOUT */
+#about { background: var(--bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.about-text p { color: var(--muted); font-size: 0.975rem; line-height: 1.9; margin-bottom: 1.1rem; }
+.about-text strong { color: var(--text); }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.stat { background: var(--bg2); border: 1px solid var(--line); padding: 1.4rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+.stat::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: linear-gradient(180deg, var(--accent), transparent); }
+.stat:hover { border-color: var(--accent); transform: translateY(-3px); }
+.stat-n { font-size: 2.2rem; font-weight: 800; line-height: 1; background: linear-gradient(135deg, var(--accent), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.35rem; }
+.stat-l { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* SKILLS */
+#skills { background: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+.skill-box { background: var(--bg3); border: 1px solid var(--line); padding: 1.6rem; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+.skill-box::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent), var(--teal)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.skill-box:hover { border-color: var(--linehi); transform: translateY(-4px); }
+.skill-box:hover::after { transform: scaleX(1); }
+.skill-icon { font-size: 1.6rem; margin-bottom: 0.85rem; }
+.skill-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag { font-family: var(--mono); font-size: 0.67rem; padding: 0.28rem 0.65rem; background: rgba(123,97,255,0.1); border: 1px solid rgba(123,97,255,0.25); color: var(--accent); }
+.tag.t { background: rgba(0,229,200,0.08); border-color: rgba(0,229,200,0.2); color: var(--teal); }
+.tag.w { background: rgba(255,255,255,0.04); border-color: var(--line); color: var(--muted); }
+
+/* PROJECTS */
+#projects { background: var(--bg); }
+.proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.25rem; }
+.proj-card { background: var(--bg2); border: 1px solid var(--line); overflow: hidden; transition: border-color 0.25s, transform 0.25s; }
+.proj-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+.proj-thumb { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 2.8rem; position: relative; }
+.proj-thumb::after { content: ''; position: absolute; inset: 0; background: rgba(10,10,12,0.25); transition: opacity 0.25s; }
+.proj-card:hover .proj-thumb::after { opacity: 0; }
+.proj-body { padding: 1.4rem; }
+.proj-type { font-family: var(--mono); font-size: 0.65rem; color: var(--teal); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.proj-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; line-height: 1.3; }
+.proj-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.1rem; }
+.proj-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.proj-stack .tag { font-size: 0.62rem; }
+.proj-foot { padding: 0.85rem 1.4rem; border-top: 1px solid var(--line); display: flex; gap: 1rem; }
+.proj-link { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.proj-link:hover { color: var(--teal); }
+.proj-link.dim { opacity: 0.35; cursor: default; }
+
+/* EXPERIENCE */
+#experience { background: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(180deg, var(--teal), var(--accent), transparent); }
+.tl-item { position: relative; padding-bottom: 3rem; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot { position: absolute; left: -2.35rem; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(123,97,255,0.15); }
+.tl-dot.now { background: var(--teal); box-shadow: 0 0 0 4px rgba(0,229,200,0.15); }
+.tl-period { font-family: var(--mono); font-size: 0.7rem; color: var(--teal); letter-spacing: 0.12em; margin-bottom: 0.35rem; }
+.tl-role { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+.tl-company { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin-bottom: 0.9rem; }
+.tl-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.8; max-width: 660px; margin-bottom: 1rem; }
+.tl-list { display: flex; flex-direction: column; gap: 0.45rem; }
+.tl-list li { list-style: none; font-family: var(--mono); font-size: 0.76rem; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.6; }
+.tl-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+.tl-list strong { color: var(--text); }
+
+/* CONTACT */
+#contact { background: var(--bg); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.contact-desc { font-size: 0.975rem; color: var(--muted); line-height: 1.9; margin-bottom: 2rem; }
+.contact-items { display: flex; flex-direction: column; gap: 0.85rem; }
+.c-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; text-decoration: none; background: var(--bg2); border: 1px solid var(--line); transition: border-color 0.2s, transform 0.2s; }
+.c-item:hover { border-color: var(--accent); transform: translateX(4px); }
+.c-icon { font-size: 1.2rem; flex-shrink: 0; }
+.c-label { font-family: var(--mono); font-size: 0.67rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.15rem; }
+.c-val { font-size: 0.88rem; color: var(--text); word-break: break-all; }
+.cform { display: flex; flex-direction: column; gap: 1.1rem; }
+.flabel { font-family: var(--mono); font-size: 0.67rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+.finput, .ftextarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); padding: 0.8rem 1rem; color: var(--text); font-family: var(--sans); font-size: 0.875rem; outline: none; transition: border-color 0.2s; }
+.finput:focus, .ftextarea:focus { border-color: var(--accent); }
+.ftextarea { height: 130px; resize: none; }
+
+/* FOOTER */
+footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.fcopy { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+.fcopy span { color: var(--accent); }
+.ftop { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.ftop:hover { color: var(--teal); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  #hero { padding: 6rem 1.5rem 4rem; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  section { padding: 5rem 1.5rem; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+}
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .s-title { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">lhs<span>.</span>dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Unity Contents Developer</div>
+      <h1 class="hero-name">이현수<br><span class="grad">Dev.</span></h1>
+      <div class="hero-sub">
+        <em>Unity</em> Contents Developer &nbsp;·&nbsp; <em>WPF</em> Desktop Engineer<br>
+        C# / .NET &nbsp;·&nbsp; Architecture &amp; Design Patterns
+      </div>
+      <p class="hero-desc">인터랙티브 콘텐츠, 포토부스, 미디어아트 설치물까지 — Unity와 C#으로 공간과 사람을 연결하는 경험을 만듭니다. 깔끔한 아키텍처와 디자인 패턴으로 유지보수 가능한 소프트웨어를 설계합니다.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-p">프로젝트 보기</a>
+        <a href="#contact" class="btn btn-o">연락하기</a>
+      </div>
+    </div>
+  <div class="hero-right">
+    <div class="code-card">
+      <div class="code-bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <span class="code-file">Developer.cs</span>
+      </div>
+      <div class="code-body">
+        <div><span class="ln">01</span><span class="kw">public class </span><span class="cl">Developer</span> : <span class="cl">MonoBehaviour</span></div>
+        <div><span class="ln">02</span>{</div>
+        <div><span class="ln">03</span>&nbsp;&nbsp;<span class="kw">public string </span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = <span class="st">"이현수"</span>;</div>
+        <div><span class="ln">04</span>&nbsp;&nbsp;<span class="kw">public string </span>Role&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = <span class="st">"Unity Contents Dev"</span>;</div>
+        <div><span class="ln">05</span>&nbsp;&nbsp;<span class="kw">public string </span>Company&nbsp;&nbsp;&nbsp; = <span class="st">"㈜서북"</span>;</div>
+        <div><span class="ln">06</span>&nbsp;&nbsp;<span class="kw">public string </span>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = <span class="st" id="code-email">"dlgustn1245[at]naver.com"</span>;</div>
+        <div><span class="ln">07</span>&nbsp;&nbsp;<span class="kw">public string </span>GitHub&nbsp;&nbsp;&nbsp;&nbsp; = <span class="st">"github.com/dlgustn1245"</span>;</div>
+        <div><span class="ln">08</span>&nbsp;&nbsp;<span class="kw">public float&nbsp; </span>Experience = <span class="nm">3.9f</span>;</div>
+        <div><span class="ln">09</span>&nbsp;&nbsp;<span class="kw">private float </span>_coffee&nbsp;&nbsp;&nbsp; = <span class="nm">Mathf.Infinity</span>;</div>
+        <div><span class="ln">10</span>&nbsp;&nbsp;<span class="kw">private bool&nbsp; </span>_isCoding  = <span class="nm">true</span>;</div>
+        <div><span class="ln">11</span>&nbsp;</div>
+        <div><span class="ln">12</span>&nbsp;&nbsp;<span class="kw">void </span><span class="fn">Start</span>()</div>
+        <div><span class="ln">13</span>&nbsp;&nbsp;{</div>
+        <div><span class="ln">14</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Debug</span>.<span class="fn">Log</span>(<span class="st">"오늘도 빌드 성공하게 해주세요"</span>);</div>
+        <div><span class="ln">15</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">DontDestroyOnLoad</span>(<span class="nm">this</span>); <span class="cm">// 오래 살아남기</span></div>
+        <div><span class="ln">16</span>&nbsp;&nbsp;}</div>
+        <div><span class="ln">17</span>&nbsp;</div>
+        <div><span class="ln">18</span>&nbsp;&nbsp;<span class="kw">void </span><span class="fn">Update</span>()</div>
+        <div><span class="ln">19</span>&nbsp;&nbsp;{</div>
+        <div><span class="ln">20</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if </span>(_isCoding)</div>
+        <div><span class="ln">21</span>&nbsp;&nbsp;&nbsp;&nbsp;{</div>
+        <div><span class="ln">22</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_coffee    -= <span class="cl">Time</span>.deltaTime;</div>
+        <div><span class="ln">23</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Experience += <span class="cl">Time</span>.deltaTime / <span class="nm">31536000f</span>;</div>
+        <div><span class="ln">24</span>&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+        <div><span class="ln">25</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">// TODO: 퇴근 조건 아직 미구현</span></div>
+        <div><span class="ln">26</span>&nbsp;&nbsp;}</div>
+        <div><span class="ln">27</span>}</div>
+      </div>
+    </div>
+    </div><!-- /hero-right -->
+  </div><!-- /hero-inner -->
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <div class="s-label">About Me</div>
+    <h2 class="s-title">콘텐츠로 공간을<br>살아있게 만듭니다.</h2>
+    <div class="s-bar"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>안녕하세요! 저는 <strong>Unity 기반 인터랙티브 콘텐츠</strong>를 전문으로 하는 개발자 이현수입니다.</p>
+        <p>나이키 런칭 이벤트, 국립현대미술관, 포토이즘 등 다양한 오프라인 현장에서 사람들의 경험을 풍부하게 만드는 콘텐츠를 개발해왔습니다.</p>
+        <p>포토부스, 미디어월, LED 인스톨레이션, IoT 하드웨어 연동까지 — 소프트웨어와 물리 세계를 잇는 작업을 즐깁니다. <strong>아키텍처 설계와 디자인 패턴</strong>을 통해 복잡한 시스템도 깔끔하게 구조화합니다.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-n">3.9년</div><div class="stat-l">Experience</div></div>
+        <div class="stat"><div class="stat-n">9+</div><div class="stat-l">Projects</div></div>
+        <div class="stat"><div class="stat-n">2</div><div class="stat-l">Companies</div></div>
+        <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Tech Stacks</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="inner">
+    <div class="s-label">Tech Stack</div>
+    <h2 class="s-title">기술 스택</h2>
+    <div class="s-bar"></div>
+    <div class="skills-grid">
+      <div class="skill-box">
+        <div class="skill-icon">🎮</div>
+        <div class="skill-title">Unity Contents Dev</div>
+        <div class="tags">
+          <span class="tag">Unity 2022 LTS</span><span class="tag">C# Scripting</span>
+          <span class="tag">URP / HDRP</span><span class="tag">Shader Graph</span>
+          <span class="tag">Addressables</span><span class="tag">DOTween</span><span class="tag">UniTask</span>
+        </div>
+      </div>
+      <div class="skill-box">
+        <div class="skill-icon">🔌</div>
+        <div class="skill-title">Hardware Integration</div>
+        <div class="tags">
+          <span class="tag t">Arduino</span><span class="tag t">Serial Comm</span>
+          <span class="tag t">Camera SDK</span><span class="tag t">Printer SDK</span>
+          <span class="tag t">LED Control</span><span class="tag t">IoT</span>
+        </div>
+      </div>
+      <div class="skill-box">
+        <div class="skill-icon">🖥️</div>
+        <div class="skill-title">WPF Desktop</div>
+        <div class="tags">
+          <span class="tag">WPF</span><span class="tag">MVVM</span><span class="tag">XAML</span>
+          <span class="tag">Prism</span><span class="tag">CommunityToolkit.Mvvm</span><span class="tag">VB</span>
+        </div>
+      </div>
+      <div class="skill-box">
+        <div class="skill-icon">☁️</div>
+        <div class="skill-title">Backend &amp; API</div>
+        <div class="tags">
+          <span class="tag t">Firebase</span><span class="tag t">REST API</span>
+          <span class="tag t">MQTT</span><span class="tag t">C# / .NET</span>
+          <span class="tag t">LINQ</span><span class="tag t">async/await</span>
+        </div>
+      </div>
+      <div class="skill-box">
+        <div class="skill-icon">🏗️</div>
+        <div class="skill-title">Architecture &amp; Patterns</div>
+        <div class="tags">
+          <span class="tag w">SOLID</span><span class="tag w">State Machine</span>
+          <span class="tag w">Observer</span><span class="tag w">Command</span>
+          <span class="tag w">Factory</span><span class="tag w">Repository</span><span class="tag w">Event Bus</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="inner">
+    <div class="s-label">Work</div>
+    <h2 class="s-title">프로젝트</h2>
+    <div class="s-bar"></div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#111,#1c1c1c,#282828);">👟</div>
+        <div class="proj-body">
+          <div class="proj-type">Unity · Event · Photo Booth</div>
+          <div class="proj-name">나이키 조던 루카 1 런칭 이벤트</div>
+          <div class="proj-desc">사용자 등록 프로그램 및 포토부스 프로그램 개발. Firebase 실시간 연동으로 현장 데이터 관리.</div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag t">Firebase</span><span class="tag w">Photo Booth</span></div>
+        </div>
+        <div class="proj-foot"><a href="https://plinqer.cc/28" target="_blank" class="proj-link">▸ 관련 링크</a></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0a1628,#102040,#1a3a5c);">🎨</div>
+        <div class="proj-body">
+          <div class="proj-type">Unity · Museum · Interactive</div>
+          <div class="proj-name">국립현대미술관 청주 어린이 미디어 콘텐츠</div>
+          <div class="proj-desc">어린이 관람객 대상 인터랙티브 미디어 콘텐츠 개발 보조. Unity 기반 체험형 전시 구현.</div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag w">Interactive</span><span class="tag w">Museum</span></div>
+        </div>
+        <div class="proj-foot"><a href="https://plinqer.cc/67" target="_blank" class="proj-link">▸ 관련 링크</a></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d2b1a,#1a4a2e,#2a6e40);">🌿</div>
+        <div class="proj-body">
+          <div class="proj-type">Unity · Photo Booth · Hardware</div>
+          <div class="proj-name">보타니컬 제천</div>
+          <div class="proj-desc">포토부스 프로그램 개발 및 카메라·프린터 등 하드웨어 연동. Arduino 시리얼 통신으로 물리 장치 제어.</div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag t">Arduino</span><span class="tag w">Hardware</span></div>
+        </div>
+        <div class="proj-foot"><a href="https://plinqer.cc/72" target="_blank" class="proj-link">▸ 관련 링크</a></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#001533,#002966,#003d99);">💡</div>
+        <div class="proj-body">
+          <div class="proj-type">Unity · Interactive · LED</div>
+          <div class="proj-name">인터랙티브 LED 풀</div>
+          <div class="proj-desc">LED 풀 소프트웨어 개발 및 하드웨어 연동 지원. 실시간 인터랙션에 반응하는 LED 제어 로직 구현.</div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag t">LED Control</span><span class="tag w">Hardware</span></div>
+        </div>
+        <div class="proj-foot"><span class="proj-link dim">▸ 비공개 프로젝트</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#1a0a00,#3d2000,#6b3800);">🍵</div>
+        <div class="proj-body">
+          <div class="proj-type">Unity · Media Wall · Museum</div>
+          <div class="proj-name">보성 차박물관 미디어월</div>
+          <div class="proj-desc">보성 차박물관 전시용 미디어월 개발 보조. Firebase 연동으로 콘텐츠 데이터 실시간 관리.</div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag t">Firebase</span><span class="tag w">Media Wall</span></div>
+        </div>
+        <div class="proj-foot"><span class="proj-link dim">▸ 비공개 프로젝트</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#1a001a,#330033,#5c0066);">📸</div>
+        <div class="proj-body">
+          <div class="proj-type">Unity · Full Architecture · IoT</div>
+          <div class="proj-name">포토이즘</div>
+          <div class="proj-desc">전체 아키텍처 설계부터 개발·유지보수 전담. REST API·MQTT 서버 통신 및 VB 연동으로 복합 시스템 구성.</div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">VB</span><span class="tag t">REST API</span><span class="tag t">MQTT</span><span class="tag w">Architecture</span></div>
+        </div>
+        <div class="proj-foot"><span class="proj-link dim">▸ 비공개 프로젝트</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0f0f0f,#1c1c1c,#2a2a2a);">🗃️</div>
+        <div class="proj-body">
+          <div class="proj-type">Unity · Architecture · Cloud</div>
+          <div class="proj-name">애물단지 프로젝트</div>
+          <div class="proj-desc">프로그램 아키텍처 설계 및 아이템 촬영·서버 업로드 기능 개발. Firebase 클라우드 스토리지 파이프라인 구현.</div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag t">Firebase</span><span class="tag w">Architecture</span></div>
+        </div>
+        <div class="proj-foot"><a href="https://zanne.kr/blogPost/WhiteElephant" target="_blank" class="proj-link">▸ 관련 링크</a></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#1a0d00,#3b2000,#5c3800);">🕯️</div>
+        <div class="proj-body">
+          <div class="proj-type">Interactive Art · Hardware</div>
+          <div class="proj-name">감정진단제작소</div>
+          <div class="proj-desc">관람객의 감정을 시각화하고 향초로 제작하는 인터랙티브 아트. Arduino 하드웨어 연동 및 Firebase 데이터 처리.</div>
+          <div class="proj-stack"><span class="tag t">Arduino</span><span class="tag t">Firebase</span><span class="tag w">Interactive Art</span></div>
+        </div>
+        <div class="proj-foot"><span class="proj-link dim">▸ 비공개 프로젝트</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#00204a,#003580,#0051c3);">🏅</div>
+        <div class="proj-body">
+          <div class="proj-type">Unity · Kiosk · Game Contents</div>
+          <div class="proj-name">Paris Olympics 2024 KOREA HOUSE x Photoism</div>
+          <div class="proj-desc">포토부스 키오스크를 활용한 리모컨 원클릭 게임형 콘텐츠 개발. 파리 올림픽 코리아 하우스 현장 적용.</div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag w">Kiosk</span><span class="tag w">Game Contents</span></div>
+        </div>
+        <div class="proj-foot"><span class="proj-link dim">▸ 비공개 프로젝트</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="inner">
+    <div class="s-label">Career</div>
+    <h2 class="s-title">경력 / 이력서</h2>
+    <div class="s-bar"></div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot now"></div>
+        <div class="tl-period">2025.06 — 현재 &nbsp;·&nbsp; 재직중</div>
+        <div class="tl-role">Unity Contents Developer</div>
+        <div class="tl-company">㈜서북 &nbsp;·&nbsp; 솔루션</div>
+        <div class="tl-desc">플링커㈜ 인수합병으로 분리된 법인. 기존 포토이즘 서비스를 이어받아 개발 및 유지보수 담당.</div>
+        <ul class="tl-list">
+          <li><strong>포토이즘</strong> 개발 및 유지보수 — Unity, C# · 3인 팀</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2022.07 — 2025.06 &nbsp;·&nbsp; 3년</div>
+        <div class="tl-role">Unity Contents Developer</div>
+        <div class="tl-company">플링커㈜ &nbsp;·&nbsp; 솔루션</div>
+        <div class="tl-desc">오프라인 이벤트·전시·설치미술 등 다양한 현장의 Unity 기반 인터랙티브 콘텐츠 개발. 포토부스, 미디어월, LED 인스톨레이션, IoT 연동 시스템까지 폭넓은 프로젝트 수행.</div>
+        <ul class="tl-list">
+          <li><strong>나이키 조던 루카 1 런칭 이벤트</strong> — 사용자 등록·포토부스 개발 (Unity, C#, Firebase)</li>
+          <li><strong>국립현대미술관 청주 어린이 미디어 콘텐츠</strong> — 개발 보조 (Unity, C#)</li>
+          <li><strong>보타니컬 제천</strong> — 포토부스 개발, 카메라·프린터 하드웨어 연동 (Unity, C#, Arduino)</li>
+          <li><strong>인터랙티브 LED 풀</strong> — LED 소프트웨어 개발 및 하드웨어 연동 (Unity, C#)</li>
+          <li><strong>보성 차박물관 미디어월</strong> — 개발 보조 (Unity, C#, Firebase)</li>
+          <li><strong>감정진단제작소</strong> — 관람객 감정 시각화 및 향초 제작 인터랙티브 아트 개발 (Arduino, Firebase)</li>
+          <li><strong>Paris Olympics 2024 KOREA HOUSE x Photoism</strong> — 포토부스 키오스크 기반 리모컨 원클릭 게임형 콘텐츠 개발 (Unity, C#)</li>
+          <li><strong>포토이즘</strong> — 전체 아키텍처 설계 및 개발·유지보수 (Unity, C#, VB, REST API, MQTT)</li>
+          <li><strong>애물단지 프로젝트</strong> — 아키텍처 설계, 아이템 촬영·서버 업로드 개발 (Unity, C#, Firebase)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <div class="s-label">Contact</div>
+    <h2 class="s-title">함께 만들어요.</h2>
+    <div class="s-bar"></div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-desc">새로운 프로젝트, 협업, 또는 기술적인 이야기라면 언제든 환영합니다. 편하게 연락 주세요!</p>
+        <div class="contact-items">
+          <a id="email-link" href="#" class="c-item">
+            <span class="c-icon">✉️</span>
+            <div>
+              <div class="c-label">Email</div>
+              <div class="c-val" id="email-val"></div>
+            </div>
+          </a>
+          <a href="https://github.com/dlgustn1245" target="_blank" class="c-item">
+            <span class="c-icon">🐙</span>
+            <div>
+              <div class="c-label">GitHub</div>
+              <div class="c-val">github.com/dlgustn1245</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <form class="cform" onsubmit="sendForm(event)">
+        <div>
+          <label class="flabel">이름</label>
+          <input class="finput" type="text" placeholder="이름을 입력해주세요" required>
+        </div>
+        <div>
+          <label class="flabel">이메일</label>
+          <input class="finput" type="email" placeholder="your@email.com" required>
+        </div>
+        <div>
+          <label class="flabel">메시지</label>
+          <textarea class="ftextarea" placeholder="안녕하세요! 협업 제안이 있어서요..." required></textarea>
+        </div>
+        <div><button type="submit" class="btn btn-p">메시지 보내기</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fcopy">© 2026 <span>이현수</span> · Built with precision &amp; purpose</div>
+  <a href="#hero" class="ftop">↑ Back to top</a>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const u = 'dlgustn1245'; const d = 'naver.com';
+const email = u + '@' + d;
+const el = document.getElementById('email-val');
+const link = document.getElementById('email-link');
+const codeEl = document.getElementById('code-email');
+if (el) el.textContent = email;
+if (link) link.href = 'mailto:' + email;
+if (codeEl) codeEl.textContent = '"' + email + '"';
+
+const secs = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (scrollY >= s.offsetTop - 130) cur = s.id; });
