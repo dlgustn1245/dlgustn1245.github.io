@@ -539,7 +539,7 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
       <div>
         <p class="contact-desc">새로운 프로젝트, 협업, 또는 기술적인 이야기라면 언제든 환영합니다. 편하게 연락 주세요!</p>
         <div class="contact-items">
-          <a href="/cdn-cgi/l/email-protection#452129223036312b7477717063663d71757e2b243320376b262a28" class="c-item">
+          <a href="mailto:dlgustn1245@naver.com" class="c-item">
             <span class="c-icon">✉️</span>
             <div>
               <div class="c-label">Email</div>
@@ -558,15 +558,15 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
       <form class="cform" onsubmit="sendForm(event)">
         <div>
           <label class="flabel">이름</label>
-          <input class="finput" type="text" placeholder="이름을 입력해주세요" required>
+          <input class="finput" type="text" name="name" placeholder="이름을 입력해주세요" required>
         </div>
         <div>
           <label class="flabel">이메일</label>
-          <input class="finput" type="email" placeholder="your@email.com" required>
+          <input class="finput" type="email" name="email" placeholder="your@email.com" required>
         </div>
         <div>
           <label class="flabel">메시지</label>
-          <textarea class="ftextarea" placeholder="안녕하세요! 협업 제안이 있어서요..." required></textarea>
+          <textarea class="ftextarea" name="message" placeholder="안녕하세요! 협업 제안이 있어서요..." required></textarea>
         </div>
         <div><button type="submit" class="btn btn-p">메시지 보내기</button></div>
       </form>
@@ -766,9 +766,43 @@ window.addEventListener('scroll', () => {
 function sendForm(e) {
   e.preventDefault();
   const btn = e.target.querySelector('button');
-  btn.textContent = '전송 완료 ✓';
-  btn.style.background = 'var(--teal)'; btn.style.color = 'var(--bg)';
-  setTimeout(() => { btn.textContent = '메시지 보내기'; btn.style.background = ''; btn.style.color = ''; e.target.reset(); }, 3000);
+  const formData = new FormData(e.target);
+
+  btn.textContent = '전송 중...';
+  btn.disabled = true;
+
+  fetch('https://formspree.io/f/mqewwvny', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(res => {
+    if (res.ok) {
+      btn.textContent = '전송 완료 ✓';
+      btn.style.background = 'var(--teal)';
+      btn.style.color = 'var(--bg)';
+      e.target.reset();
+      setTimeout(() => {
+        btn.textContent = '메시지 보내기';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 3000);
+    } else {
+      throw new Error('전송 실패');
+    }
+  })
+  .catch(() => {
+    btn.textContent = '전송 실패 — 다시 시도해주세요';
+    btn.style.background = '#c0392b';
+    btn.style.color = '#fff';
+    btn.disabled = false;
+    setTimeout(() => {
+      btn.textContent = '메시지 보내기';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3000);
+  });
 }
 
 /* ── MODAL ── */
