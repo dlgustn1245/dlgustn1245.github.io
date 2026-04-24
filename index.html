@@ -396,7 +396,7 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
       </div>
 
       <div class="proj-card">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d2b1a,#1a4a2e,#2a6e40);">🌿</div>
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d2b1a,#1a4a2e,#2a6e40);padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777016717/Pics_hgns5d.png" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;" alt="보타니컬 제천"></div>
         <div class="proj-body">
           <div class="proj-type">Unity · Photo Booth · Hardware</div>
           <div class="proj-name">보타니컬 제천</div>
@@ -808,12 +808,23 @@ const projects = [
     id: 2,
     emoji: '🌿',
     bg: 'linear-gradient(135deg,#0d2b1a,#1a4a2e,#2a6e40)',
+    imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777016717/Pics_hgns5d.png',
+    imgFit: 'contain',
+    gallery: null,
+    _galleryUrls: [
+      { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777016658/Title_n02l84.png', type: 'image' },
+      { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777016658/SelPic_m9pfyr.png', type: 'image' },
+      { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777017031/InputCode_evqijt.png', type: 'image' },
+      { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777016657/Complete_fosreg.png', type: 'image' },
+    ],
+    _cloudinaryLoaded: false,
     type: 'Unity · Photo Booth · Hardware',
     name: '보타니컬 제천',
     desc: UL(
       LI('무인 사진 촬영 및 출력 시스템 구축', 'Canon DSLR 카메라 및 포토 프린터를 연동한 무인 사진 촬영·출력 시스템 구축.'),
       LI('Unity ↔ Arduino 시리얼 통신', '부스 사용 여부를 나타내는 LED 전등을 소프트웨어 단에서 직접 제어.'),
-      LI('Firebase 연동 및 QR 다운로드', 'Firebase DB/Storage를 활용한 데이터 저장 및 QR 코드를 통한 사용자 사진 다운로드 기능 구현.')
+      LI('Firebase 연동 및 QR 다운로드', 'Firebase DB/Storage를 활용한 데이터 저장 및 QR 코드를 통한 사용자 사진 다운로드 기능 구현.'),
+      LI('핀 코드 기반 커스텀 프레임 시스템', '사용자가 키오스크에 핀 코드를 입력하면 Firebase Storage에서 해당 프레임 이미지를 실시간으로 불러오는 커스텀 프레임 로드 시스템 구현. 코드 배포만으로 이벤트·시즌별 전용 프레임 제공 가능.')
     ),
     stack: ['Unity','C#','Arduino','Hardware'],
     stackClass: ['','','t','w'],
