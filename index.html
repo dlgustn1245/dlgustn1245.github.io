@@ -321,9 +321,10 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
         <div class="skill-icon">🎮</div>
         <div class="skill-title">Unity Contents Dev</div>
         <div class="tags">
-          <span class="tag">Unity 2022 LTS</span><span class="tag">C# Scripting</span>
-          <span class="tag">URP / HDRP</span><span class="tag">Shader Graph</span>
-          <span class="tag">Addressables</span><span class="tag">DOTween</span><span class="tag">UniTask</span>
+          <span class="tag">C# Scripting</span><span class="tag">MVC Pattern</span>
+          <span class="tag">LINQ</span><span class="tag">async/await</span>
+          <span class="tag t">Firebase</span><span class="tag t">REST API</span>
+          <span class="tag t">MQTT</span>
         </div>
       </div>
       <div class="skill-box">
@@ -339,26 +340,8 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
         <div class="skill-icon">🖥️</div>
         <div class="skill-title">WPF Desktop</div>
         <div class="tags">
-          <span class="tag">WPF</span><span class="tag">MVVM</span><span class="tag">XAML</span>
-          <span class="tag">Prism</span><span class="tag">CommunityToolkit.Mvvm</span><span class="tag">VB</span>
-        </div>
-      </div>
-      <div class="skill-box">
-        <div class="skill-icon">☁️</div>
-        <div class="skill-title">Backend &amp; API</div>
-        <div class="tags">
-          <span class="tag t">Firebase</span><span class="tag t">REST API</span>
-          <span class="tag t">MQTT</span><span class="tag t">C# / .NET</span>
-          <span class="tag t">LINQ</span><span class="tag t">async/await</span>
-        </div>
-      </div>
-      <div class="skill-box">
-        <div class="skill-icon">🏗️</div>
-        <div class="skill-title">Architecture &amp; Patterns</div>
-        <div class="tags">
-          <span class="tag w">SOLID</span><span class="tag w">State Machine</span>
-          <span class="tag w">Observer</span><span class="tag w">Command</span>
-          <span class="tag w">Factory</span><span class="tag w">Repository</span><span class="tag w">Event Bus</span>
+          <span class="tag">WPF</span><span class="tag">XAML</span>
+          <span class="tag">C# / .NET</span><span class="tag">VB</span>
         </div>
       </div>
     </div>
@@ -434,7 +417,7 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
           <div class="proj-type">Unity · Full Architecture · IoT</div>
           <div class="proj-name">포토이즘</div>
           <div class="proj-desc">전국 매장에 설치된 무인 포토부스 키오스크 서비스. 촬영·편집·인화·서버 업로드까지 전 과정을 처리하는 복합 솔루션.</div>
-          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">VB</span><span class="tag t">REST API</span><span class="tag t">MQTT</span><span class="tag w">Architecture</span></div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">WPF</span><span class="tag">VB</span><span class="tag t">REST API</span><span class="tag t">MQTT</span></div>
         </div>
         <div class="proj-foot"><span class="proj-detail">자세히 살펴보기 →</span></div>
       </div>
@@ -919,8 +902,8 @@ const projects = [
       LI('아키텍처 개선 및 WPF 포팅', 'MVC 패턴 도입으로 유지보수 효율화. 안정적 운영을 위한 WPF 포팅 진행 중.'),
       LI('서버 통신 및 원격 제어망 구축', 'REST API·MQTT 통신으로 키오스크 상태(네트워크·카메라·프린터) 및 결제 시퀀스 실시간 서버 동기화. 서버 단의 원격 제어 기능 구현.')
     ),
-    stack: ['Unity','C#','VB','REST API','MQTT','Architecture'],
-    stackClass: ['','','','t','t','w'],
+    stack: ['Unity','C#','WPF','VB','REST API','MQTT'],
+    stackClass: ['','','','','t','t'],
     link: null
   },
   {
@@ -962,7 +945,7 @@ const projects = [
     name: '감정진단제작소',
     desc: UL(
       LI('감정 시각화 인터랙티브 아트', '관람객이 자신의 감정을 선택하면 해당 감정을 색과 향으로 시각화하고 커스텀 향초를 제작해주는 인터랙티브 설치 작품.'),
-      LI('하드웨어 제어', '향로 첨가 모터 및 색상 분사 모터 제어')
+      LI('하드웨어 제어', '향료 첨가 모터 및 색상 분사 모터 제어')
     ),
     stack: ['Arduino','Firebase','Interactive Art'],
     stackClass: ['t','t','w'],
