@@ -564,7 +564,6 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
   <a href="#hero" class="ftop">↑ Back to top</a>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <!-- LIGHTBOX -->
 <div id="lightbox" onclick="closeLightbox()">
   <img id="lightbox-img" src="" alt="">
@@ -731,12 +730,6 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
 </style>
 
 <script data-cfasync="false">
-/* ── EMAIL ── */
-const u = 'dlgustn1245'; const d = 'naver.com';
-const email = u + '@' + d;
-const codeEl = document.getElementById('code-email');
-if (codeEl) codeEl.textContent = '"' + email + '"';
-
 /* ── NAV HIGHLIGHT ── */
 const secs = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
@@ -813,12 +806,10 @@ const projects = [
     emoji: '🎨',
     bg: 'linear-gradient(135deg,#0a1628,#102040,#1a3a5c)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777017832/Title_gm6edq.png',
-    gallery: null,
     _galleryUrls: [
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777017832/Image1_k5gmy3.png', type: 'image' },
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777017831/Maze_rb5rwp.png', type: 'image' },
     ],
-    _cloudinaryLoaded: false,
     type: 'Unity · Museum · Android App',
     name: '국립현대미술관 청주 어린이 미디어 콘텐츠',
     desc: UL(
@@ -835,14 +826,12 @@ const projects = [
     bg: 'linear-gradient(135deg,#0d2b1a,#1a4a2e,#2a6e40)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777016717/Pics_hgns5d.png',
     imgFit: 'contain',
-    gallery: null,
     _galleryUrls: [
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777016658/Title_n02l84.png', type: 'image' },
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777016658/SelPic_m9pfyr.png', type: 'image' },
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777017031/InputCode_evqijt.png', type: 'image' },
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777016657/Complete_fosreg.png', type: 'image' },
     ],
-    _cloudinaryLoaded: false,
     type: 'Unity · Photo Booth · Hardware',
     name: '보타니컬 제천',
     desc: UL(
@@ -889,11 +878,9 @@ const projects = [
     bg: 'linear-gradient(135deg,#1a001a,#330033,#5c0066)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777013073/Logo_hlgr2q.jpg',
     imgFit: 'contain',
-    gallery: null,
     _galleryUrls: [
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777012822/Title_r3dyuh.png', type: 'image' },
     ],
-    _cloudinaryLoaded: false,
     type: 'Unity · Full Architecture · IoT',
     name: '포토이즘',
     desc: UL(
@@ -911,13 +898,11 @@ const projects = [
     emoji: '🗃️',
     bg: 'linear-gradient(135deg,#0f0f0f,#1c1c1c,#2a2a2a)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776260695/thumb_ngw6va.jpg',
-    gallery: null,
     _galleryUrls: [
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776260692/image1_d95nke.jpg',
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776260691/image2_tqhkno.jpg',
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776260697/image3_yrpsvi.png',
     ],
-    _cloudinaryLoaded: false,
     type: 'Unity · Architecture · Cloud',
     name: '애물단지 프로젝트',
     desc: UL(
@@ -933,13 +918,11 @@ const projects = [
     emoji: '🕯️',
     bg: 'linear-gradient(135deg,#1a0d00,#3b2000,#5c3800)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776259642/thumb_nswcun.png',
-    gallery: null,
     _galleryUrls: [
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776259640/image1_o9je4i.jpg',
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776259637/image2_b31jeu.jpg',
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776259640/image3_mfcjw4.jpg',
     ],
-    _cloudinaryLoaded: false,
     
     type: 'Interactive Art · Hardware',
     name: '감정진단제작소',
@@ -956,14 +939,12 @@ const projects = [
     emoji: '🏅',
     bg: 'linear-gradient(135deg,#00204a,#003580,#0051c3)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262430/thumb_czvz7e.png',
-    gallery: null,
     _galleryUrls: [
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262434/taekwondo_kpuvgn.png', type: 'image' },
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262432/archery_mtub65.png', type: 'image' },
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262428/weightLifting_xphfv9.png', type: 'image' },
       { src: 'https://res.cloudinary.com/dxqgofmdh/video/upload/q_auto/f_auto/v1776262736/video3_hvbcxk.mp4', type: 'video' },
     ],
-    _cloudinaryLoaded: false,
     type: 'Unity · Kiosk · Game Contents',
     name: 'Paris Olympics 2024 KOREA HOUSE x Photoism',
     desc: UL(
@@ -978,7 +959,6 @@ const projects = [
     emoji: '⚔️',
     bg: 'linear-gradient(135deg,#1a2a00,#2e4a00,#3d6600)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776264150/thumb_xuthpw.png',
-    gallery: null,
     _galleryUrls: [
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776264146/ThrowingShoe_il498o.png', type: 'image' },
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776264149/JumpingRope_jgnjgb.png', type: 'image' },
@@ -986,7 +966,6 @@ const projects = [
       { src: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776264284/poster_ihbhxe.jpg', type: 'image' },
       { src: 'https://res.cloudinary.com/dxqgofmdh/video/upload/q_auto/f_auto/v1776264200/video_ogxpw0.mp4', type: 'video' },
     ],
-    _cloudinaryLoaded: false,
     type: 'Unity · Kiosk · Game Contents',
     name: '청주향교:가디언즈',
     desc: UL(
@@ -998,62 +977,6 @@ const projects = [
   }
 ];
 
-/* ── CLOUDINARY 설정 ── */
-const CLOUD_NAME = 'dxqgofmdh';
-
-/**
- * 이미지의 세로/가로 방향을 감지합니다.
- */
-function detectOrientation(src) {
-  return new Promise(resolve => {
-    const img = new Image();
-    img.onload = () => resolve(img.naturalHeight > img.naturalWidth);
-    img.onerror = () => resolve(false);
-    img.src = src;
-  });
-}
-
-/**
- * _galleryUrls를 기반으로 갤러리 배열을 구성합니다.
- * 세로/가로 방향은 실제 이미지를 로드해서 자동 감지합니다.
- */
-async function loadCloudinaryProject(p) {
-  if (p._cloudinaryLoaded) return;
-  try {
-    // 카드 썸네일 실시간 교체
-    const card = document.querySelectorAll('.proj-card')[p.id];
-    if (card && p.imgSrc) {
-      const thumb = card.querySelector('.proj-thumb');
-      if (thumb) {
-        thumb.style.padding = '0';
-        thumb.style.overflow = 'hidden';
-        thumb.innerHTML = `<img src="${p.imgSrc}" style="width:100%;height:100%;object-fit:${p.imgFit||'cover'};object-position:center;display:block;" alt="${p.name}">`;
-      }
-    }
-
-    // 갤러리 방향 감지
-    const urls = p._galleryUrls || [];
-    p.gallery = await Promise.all(
-      urls.map(async item => {
-        // 문자열이면 이전 방식 호환 (image로 간주)
-        const src = typeof item === 'string' ? item : item.src;
-        const type = typeof item === 'string' ? 'image' : (item.type || 'image');
-        const caption = src.split('/').pop().split('_')[0];
-        if (type === 'video') {
-          return { src, caption, type: 'video', tall: false };
-        }
-        const isTall = await detectOrientation(src);
-        return { src, caption, type: 'image', tall: isTall };
-      })
-    );
-
-    p._cloudinaryLoaded = true;
-  } catch (e) {
-    console.error('Cloudinary 로드 실패:', e);
-    p._cloudinaryLoaded = true;
-  }
-}
-
 function renderModal(p) {
   const stackHtml = p.stack.map((s, i) =>
     `<span class="tag ${p.stackClass[i]}">${s}</span>`
@@ -1062,10 +985,15 @@ function renderModal(p) {
     ? `<a href="${p.link}" target="_blank" class="modal-link">▸ ${p.linkLabel}</a>`
     : ``;
 
-  const galleryHtml = (p.gallery && p.gallery.length > 0) ? `
+  // 문자열 항목은 이미지로 간주
+  const gallery = (p._galleryUrls || []).map(item => {
+    const src = typeof item === 'string' ? item : item.src;
+    return { src, type: item.type || 'image', caption: src.split('/').pop().split('_')[0] };
+  });
+  const galleryHtml = gallery.length > 0 ? `
     <div class="modal-gallery-label">Gallery</div>
     <div class="modal-gallery">
-      ${p.gallery.map(item => `
+      ${gallery.map(item => `
         <div class="modal-gallery-item">
           ${item.type === 'video'
             ? `<video src="${item.src}" controls muted playsinline preload="metadata"></video>`
@@ -1094,28 +1022,16 @@ function renderModal(p) {
   `;
 }
 
-async function openModal(id) {
-  const p = projects[id];
+let closeTimer;
 
-  // 모달 먼저 열기 (로딩 상태)
+function openModal(id) {
+  clearTimeout(closeTimer); // 닫힘 애니메이션 중 재오픈 시 패널이 숨겨지지 않도록
+  renderModal(projects[id]);
   document.getElementById('modal-overlay').classList.add('active');
   const panel = document.getElementById('modal-panel');
   panel.style.display = 'block';
   requestAnimationFrame(() => panel.classList.add('active'));
   document.body.style.overflow = 'hidden';
-
-  // Cloudinary 연동 프로젝트라면 먼저 로드
-  if (p._galleryUrls) {
-    // 로딩 표시
-    document.getElementById('modal-content').innerHTML = `
-      <div style="display:flex;align-items:center;justify-content:center;height:200px;color:var(--muted);font-family:var(--mono);font-size:0.75rem;letter-spacing:0.1em;">
-        이미지 로딩 중...
-      </div>
-    `;
-    await loadCloudinaryProject(p);
-  }
-
-  renderModal(p);
 }
 
 function closeModal() {
@@ -1124,7 +1040,8 @@ function closeModal() {
   panel.classList.remove('active');
   overlay.classList.remove('active');
   document.body.style.overflow = '';
-  setTimeout(() => { panel.style.display = 'none'; }, 350);
+  clearTimeout(closeTimer);
+  closeTimer = setTimeout(() => { panel.style.display = 'none'; }, 350);
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeModal(); } });
