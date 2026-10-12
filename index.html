@@ -1037,6 +1037,7 @@ function openModal(id) {
 function closeModal() {
   const panel = document.getElementById('modal-panel');
   const overlay = document.getElementById('modal-overlay');
+  panel.querySelectorAll('video').forEach(v => v.pause()); // 숨겨도 재생은 계속되므로
   panel.classList.remove('active');
   overlay.classList.remove('active');
   document.body.style.overflow = '';
