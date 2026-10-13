@@ -466,6 +466,17 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
         <div class="proj-foot"><span class="proj-detail">자세히 살펴보기 →</span></div>
       </div>
 
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0a1a2a,#14304a,#1f4d6e);">🖼️</div>
+        <div class="proj-body">
+          <div class="proj-type">Unity · WebGL · Game</div>
+          <div class="proj-name">LocalUtopia</div>
+          <div class="proj-desc">선을 그려 영역을 확보하는 Qix 방식의 웹 게임. 스테이지마다 숨겨진 캐릭터 그림을 드러내는 것이 목표. itch.io에서 바로 플레이 가능.</div>
+          <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag t">WebGL</span><span class="tag w">Web Game</span></div>
+        </div>
+        <div class="proj-foot"><span class="proj-detail">자세히 살펴보기 →</span></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -974,6 +985,22 @@ const projects = [
     stack: ['Unity','C#','Kiosk','Game Contents'],
     stackClass: ['','','w','w'],
     link: null
+  },
+  {
+    id: 10,
+    emoji: '🖼️',
+    bg: 'linear-gradient(135deg,#0a1a2a,#14304a,#1f4d6e)',
+    type: 'Unity · WebGL · Game',
+    name: 'LocalUtopia',
+    desc: UL(
+      LI('칸과 변을 분리한 격자 설계', '칸은 확보 여부만, 변은 이동 가능 여부만 관리. 플레이어는 꼭짓점 위에서 변을 따라 이동해, 안쪽이 채워져도 테두리를 그대로 다닐 수 있음.'),
+      LI('BFS 기반 영역 확보', '궤적 완성 시 변을 벽으로 보는 BFS로 영역을 나누고, 적이 있는 가장 넓은 영역 하나만 남긴 채 나머지를 확보. 탐색 버퍼를 재사용해 매 확보마다의 할당을 없앰.'),
+      LI('프레임레이트에 독립적인 적 이동', '이동량을 한 칸 이하로 쪼개 축별로 적용해, 프레임이 떨어져도 벽을 통과하지 않고 속도도 유지. 활공·낙하·거미줄 함정의 적 3종 구현.'),
+      LI('단일 텍스처 렌더링', '게임판 전체를 Texture2D 한 장으로 그리고, 변경 범위에 따라 전체/궤적만 다시 칠해 프레임당 한 번만 업로드.')
+    ),
+    stack: ['Unity','C#','WebGL','Web Game'],
+    stackClass: ['','','t','w'],
+    link: 'https://dlgustn1245.itch.io/localutopia', linkLabel: '웹에서 플레이'
   }
 ];
 
