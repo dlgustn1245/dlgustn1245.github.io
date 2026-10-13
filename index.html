@@ -467,11 +467,11 @@ footer { padding: 1.75rem 3rem; border-top: 1px solid var(--line); display: flex
       </div>
 
       <div class="proj-card">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0a1a2a,#14304a,#1f4d6e);">🖼️</div>
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0a1a2a,#14304a,#1f4d6e);padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1791907485/4.logo_r18zi0.png" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;image-rendering:pixelated;" alt="LocalUtopia"></div>
         <div class="proj-body">
           <div class="proj-type">Unity · WebGL · Game</div>
           <div class="proj-name">LocalUtopia</div>
-          <div class="proj-desc">선을 그려 영역을 확보하는 Qix 방식의 웹 게임. 스테이지마다 숨겨진 캐릭터 그림을 드러내는 것이 목표. itch.io에서 바로 플레이 가능.</div>
+          <div class="proj-desc">선을 그어 땅을 차지하며 스테이지마다 숨겨진 캐릭터 그림을 드러내는 픽셀아트 웹 게임. itch.io에서 브라우저로 바로 플레이 가능.</div>
           <div class="proj-stack"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag t">WebGL</span><span class="tag w">Web Game</span></div>
         </div>
         <div class="proj-foot"><span class="proj-detail">자세히 살펴보기 →</span></div>
@@ -990,13 +990,15 @@ const projects = [
     id: 10,
     emoji: '🖼️',
     bg: 'linear-gradient(135deg,#0a1a2a,#14304a,#1f4d6e)',
+    imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1791907485/4.logo_r18zi0.png',
+    imgFit: 'contain',
     type: 'Unity · WebGL · Game',
     name: 'LocalUtopia',
     desc: UL(
-      LI('칸과 변을 분리한 격자 설계', '칸은 확보 여부만, 변은 이동 가능 여부만 관리. 플레이어는 꼭짓점 위에서 변을 따라 이동해, 안쪽이 채워져도 테두리를 그대로 다닐 수 있음.'),
-      LI('BFS 기반 영역 확보', '궤적 완성 시 변을 벽으로 보는 BFS로 영역을 나누고, 적이 있는 가장 넓은 영역 하나만 남긴 채 나머지를 확보. 탐색 버퍼를 재사용해 매 확보마다의 할당을 없앰.'),
-      LI('프레임레이트에 독립적인 적 이동', '이동량을 한 칸 이하로 쪼개 축별로 적용해, 프레임이 떨어져도 벽을 통과하지 않고 속도도 유지. 활공·낙하·거미줄 함정의 적 3종 구현.'),
-      LI('단일 텍스처 렌더링', '게임판 전체를 Texture2D 한 장으로 그리고, 변경 범위에 따라 전체/궤적만 다시 칠해 프레임당 한 번만 업로드.')
+      LI('땅따먹기 퍼즐 게임 개발', '선을 그어 영역을 차지할수록 숨겨진 캐릭터 그림이 드러나는 고전 Qix 방식 게임. 제한 시간·목숨·클리어 비율로 스테이지별 난이도 구성.'),
+      LI('스테이지별 캐릭터 적과 기믹', '발자국·고양이·구름·돈·거미 등 스테이지마다 다른 적이 등장하며, 떠다니기·낙하·거미줄 감속 함정 등 행동 패턴을 달리해 공략법이 바뀌도록 설계.'),
+      LI('게임 전체 흐름 구성', '타이틀 → 로딩 → 플레이 → 엔딩 → 크레딧으로 이어지는 5개 씬 구성. 클리어 기록 저장, 전 스테이지 클리어 시 보너스 스테이지 해금, BGM/SFX 볼륨·음소거 설정 제공.'),
+      LI('WebGL 빌드 및 itch.io 배포', '브라우저에서 바로 플레이할 수 있도록 WebGL로 빌드해 itch.io에 배포. 키보드와 화면 방향 버튼 입력을 모두 지원.')
     ),
     stack: ['Unity','C#','WebGL','Web Game'],
     stackClass: ['','','t','w'],
