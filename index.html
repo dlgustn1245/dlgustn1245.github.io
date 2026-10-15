@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>이현수 — Unity Contents Developer</title>
-<meta name="description" content="인터랙티브 콘텐츠, 포토부스, 미디어월, 게임을 만드는 Unity 개발자 이현수의 포트폴리오.">
+<meta name="description" content="키오스크, 포토부스, 앱, 게임을 만드는 Unity 콘텐츠 개발자 이현수의 포트폴리오.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
@@ -56,7 +56,8 @@ a { color: inherit; }
 .work { display: block; align-self: start; /* 버튼은 내용을 세로 가운데 정렬해서, 같은 줄의 짧은 카드가 아래로 밀린다 */ width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .plate { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper-2); }
 .plate img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.plate.contain img { object-fit: contain; padding: 12%; }
+.plate.contain img { object-fit: contain; padding: 12%; } /* 로고: 여백을 두고 가운데 */
+.plate.fit img { object-fit: contain; }                   /* 가로로 긴 화면 캡처: 자르지 않고 칸 너비에 맞춤 */
 .plate.pixel img { image-rendering: pixelated; }
 .plate .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 1.5rem; text-align: center; font-family: var(--serif); font-weight: 700; font-size: clamp(1.25rem, 2.4vw, 1.75rem); color: var(--paper); }
 .work:hover .plate img { transform: scale(1.03); }
@@ -171,8 +172,9 @@ a { color: inherit; }
 <!-- HERO -->
 <section id="top" class="hero wrap">
   <p class="eyebrow">이현수 · Unity Contents Developer</p>
-  <h1 class="display">콘텐츠로 공간을<br>살아있게 만듭니다.</h1>
-  <p class="lede">인터랙티브 콘텐츠, 포토부스, 미디어아트 설치물까지 — Unity와 C#으로 공간과 사람을 연결하는 경험을 만듭니다.</p></section>
+  <h1 class="display">Unity 콘텐츠를<br>만들고 운영합니다.</h1>
+  <p class="lede">키오스크와 포토부스, 앱, 게임까지 — Unity와 C#으로 콘텐츠를 개발하고, 카메라, 결제기, 프린터 같은 하드웨어 연동과 실서비스 운영까지 맡고 있습니다.</p>
+</section>
 
 <!-- WORK -->
 <section id="work" class="section wrap">
@@ -227,7 +229,7 @@ a { color: inherit; }
     <form class="cform" onsubmit="sendForm(event)">
       <label>이름<input type="text" name="name" placeholder="이름을 입력해주세요" required></label>
       <label>이메일<input type="email" name="email" placeholder="your@email.com" required></label>
-      <label>메시지<textarea name="message" placeholder="안녕하세요! 협업 제안이 있어서요..." required></textarea></label>
+      <label>메시지<textarea name="message" placeholder="채용 제안, 프로젝트 문의 등 편하게 남겨주세요." required></textarea></label>
       <button type="submit" class="btn">메시지 보내기</button>
     </form>
   </div>
@@ -351,6 +353,7 @@ const projects = [
     org: '플링커㈜',
     bg: 'linear-gradient(135deg,#00204a,#003580,#0051c3)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262430/thumb_czvz7e.png',
+    imgFit: 'fit',
     gallery: [
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262434/taekwondo_kpuvgn.png',
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262432/archery_mtub65.png',
@@ -371,6 +374,7 @@ const projects = [
     org: '플링커㈜',
     bg: 'linear-gradient(135deg,#0a1628,#102040,#1a3a5c)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777017832/Title_gm6edq.png',
+    imgFit: 'fit',
     gallery: [
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777017832/Image1_k5gmy3.png',
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1777017831/Maze_rb5rwp.png',
@@ -449,6 +453,7 @@ const projects = [
     org: '플링커㈜',
     bg: 'linear-gradient(135deg,#1a2a00,#2e4a00,#3d6600)',
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776264150/thumb_xuthpw.png',
+    imgFit: 'fit',
     gallery: [
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776264146/ThrowingShoe_il498o.png',
       'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776264149/JumpingRope_jgnjgb.png',
@@ -526,7 +531,7 @@ const isVideo = src => src.includes('/video/upload/');
 const no = i => String(i + 1).padStart(2, '0');
 
 function plate(p, w, alt) {
-  const cls = 'plate' + (p.imgFit === 'contain' ? ' contain' : '') + (p.pixel ? ' pixel' : '');
+  const cls = 'plate' + (p.imgFit ? ' ' + p.imgFit : '') + (p.pixel ? ' pixel' : '');
   const inner = p.imgSrc
     ? `<img src="${sized(p.imgSrc, w)}" alt="${alt}" loading="lazy">`
     : `<span class="ph">${p.name}</span>`;
