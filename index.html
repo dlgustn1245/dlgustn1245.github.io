@@ -325,9 +325,11 @@ const projects = [
     ],
     desc: UL(
       LI('대규모 키오스크 시스템 안정화', '국내외 2,000대 이상 키오스크를 주말 하루 평균 거래액 4억 원 규모로 안정 운영. 일평균 CX 문의 40건 중 프로그램 오류를 5건 미만으로 통제.'),
-      LI('결제 및 하드웨어 연동 고도화', '국가별 지폐 투입기(RS232) 및 카드 단말기 SDK 연동으로 현지화 결제 시스템 구축. 제조사 SDK를 바탕으로 자체 프린터 연동 프로그램(VB) 직접 개발.'),
-      LI('아키텍처 개선 및 WPF 포팅', 'MVC 패턴 도입으로 유지보수 효율화. 안정적 운영을 위한 WPF 포팅 진행 중.'),
-      LI('서버 통신 및 원격 제어망 구축', 'REST API·MQTT 통신으로 키오스크 상태(네트워크·카메라·프린터) 및 결제 시퀀스 실시간 서버 동기화. 서버 단의 원격 제어 기능 구현.')
+      LI('28개국 현지화 결제 연동', '카드 12개국, QR 11개국, 지폐·동전 24개국 결제를 지원. 결제 수단별 Provider를 팩토리로 생성하는 구조로 국가별 결제 모듈을 분리하고, 지폐·동전 투입기는 RS232 등 4종의 보드 통신 방식에 맞춰 각각 연동.'),
+      LI('포토 프린터 출력용 CLI 프로그램 개발', '제조사 SDK를 바탕으로 프린터를 제어하는 CLI 프로그램을 VB로 직접 개발. 키오스크 프로그램(C#)은 커맨드 형식으로 출력 명령만 보내도록 해 프린터 제어를 본 프로그램과 분리.'),
+      LI('MVC 패턴 도입', 'UI·데이터·로직이 씬 스크립트 하나에 모여 있어 코드가 길고 수정이 어렵던 구조를 Model·View·Controller로 나눠 유지보수성을 개선.'),
+      LI('Unity → WPF 전환', '키오스크 프로그램을 더 가볍게 만들고 Unity 라이선스 비용을 없애기 위해 WPF로 전환.'),
+      LI('서버 연동 및 원격 제어', 'REST API·MQTT로 키오스크 상태(네트워크·카메라·프린터)와 결제 시퀀스를 서버와 실시간 동기화. 서버에서 MQTT로 점검 화면 표시·해제, 서비스 코인 지급, 업데이트 화면 전환 등을 원격 제어할 수 있도록 구현.')
     ),
     stack: ['Unity', 'C#', 'WPF', 'VB', 'REST API', 'MQTT', 'RS232'],
   },
@@ -523,7 +525,8 @@ const projects = [
       LI('WebGL 빌드 및 itch.io 배포', '브라우저에서 바로 플레이할 수 있도록 WebGL로 빌드해 itch.io에 배포. 키보드와 화면 방향 버튼 입력을 모두 지원.')
     ),
     stack: ['Unity', 'C#', 'WebGL'],
-    link: 'https://dlgustn1245.itch.io/localutopia', linkLabel: '웹에서 플레이'
+    link: 'https://dlgustn1245.itch.io/localutopia', linkLabel: '웹에서 플레이',
+    repo: 'https://github.com/dlgustn1245/LocalUtopia'
   }
 ];
 
@@ -572,6 +575,7 @@ function renderModal(p, i) {
     ['소속', p.org],
     ['기술', p.stack.join(', ')],
     ['링크', p.link && `<a href="${p.link}" target="_blank" rel="noopener">${p.linkLabel} ↗</a>`],
+    ['저장소', p.repo && `<a href="${p.repo}" target="_blank" rel="noopener">GitHub ↗</a>`],
   ].filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
 
   const gallery = (p.gallery || []).map((src, n) => `
