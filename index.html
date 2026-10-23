@@ -336,6 +336,30 @@ const projects = [
     stack: ['Unity', 'C#', 'WPF', 'VB', 'REST API', 'MQTT', 'RS232'],
   },
   {
+    name: '파리 올림픽 2024 코리아 하우스 × 포토이즘',
+    type: 'Kiosk · Game Contents',
+    summary: '2024 파리 올림픽 코리아 하우스에 설치된 포토부스 키오스크. 태권도·양궁·역도를 리모컨 버튼 하나로 즐기는 게임형 포토 콘텐츠.',
+    role: '게임형 포토 콘텐츠 개발',
+    org: '플링커㈜',
+    period: '2024.07.25 – 08.11 (18일)',
+    bg: 'linear-gradient(135deg,#00204a,#003580,#0051c3)',
+    imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262430/thumb_czvz7e.png',
+    imgFit: 'fit',
+    gallery: [
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262434/taekwondo_kpuvgn.png',
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262432/archery_mtub65.png',
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262428/weightLifting_xphfv9.png',
+      'https://res.cloudinary.com/dxqgofmdh/video/upload/q_auto/f_auto/v1776262736/video3_hvbcxk.mp4',
+    ],
+    desc: UL(
+      LI('올림픽 종목 미니게임 3종', '2024 파리 올림픽 코리아 하우스 포토부스 키오스크에 탑재된 태권도·양궁·역도 미니게임 개발. 종목마다 독립된 구조로 만들어 게임별로 따로 수정·교체할 수 있게 구성.'),
+      LI('포토부스 리모컨 입력 연동', '포토부스에서 쓰던 리모컨을 별도 장비 없이 그대로 게임 컨트롤러로 활용. 리모컨을 USB로 연결해 버튼을 누르면 지정된 키보드 키 이벤트가 들어오는 방식으로 연동. 게임은 키 입력만 처리하면 되도록 해, 방문객 누구나 버튼 하나로 바로 플레이할 수 있게 구성.'),
+      LI('종목별 조작 방식', '버튼은 하나지만 종목에 따라 리모컨을 빠르게 연타하거나 타이밍에 맞춰 누르도록 조작 방식을 다르게 설계해, 게임마다 다른 재미를 제공.'),
+      LI('게임 결과별 사진 프레임', '게임 결과(1·2·3등)에 따라 출력되는 사진 프레임이 달라지도록 구현해, 게임 성적이 인화 사진에 그대로 남는 포토 콘텐츠로 구성.')
+    ),
+    stack: ['Unity', 'C#', 'USB Remote'],
+  },
+  {
     name: '나이키 조던 루카 1 런칭 이벤트',
     type: 'Event · Photo Booth · Scoreboard',
     summary: '2022년 9월 성수동 커먼그라운드에서 열린 조던 루카 1 출시 행사. RFID 팔찌 참가자 등록과 자동 촬영 포토부스, 농구 게임 전광판을 개발.',
@@ -429,30 +453,6 @@ const projects = [
       LI('발송 설정과 로그', '솔라피 API는 HMAC-SHA256 서명으로 인증하고, 발신 번호·제목·본문은 설정 파일로 분리해 코드 수정 없이 바꿀 수 있게 구성. 발송 시각·제목·URL 등 발송 내역을 CSV 로그로 기록.')
     ),
     stack: ['Unity', 'C#', 'Firebase', 'SOLAPI', 'Kakao AlimTalk', 'RenderTexture'],
-  },
-  {
-    name: '파리 올림픽 2024 코리아 하우스 × 포토이즘',
-    type: 'Kiosk · Game Contents',
-    summary: '2024 파리 올림픽 코리아 하우스에 설치된 포토부스 키오스크. 태권도·양궁·역도를 리모컨 버튼 하나로 즐기는 게임형 포토 콘텐츠.',
-    role: '게임형 포토 콘텐츠 개발',
-    org: '플링커㈜',
-    period: '2024.07.25 – 08.11 (18일)',
-    bg: 'linear-gradient(135deg,#00204a,#003580,#0051c3)',
-    imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262430/thumb_czvz7e.png',
-    imgFit: 'fit',
-    gallery: [
-      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262434/taekwondo_kpuvgn.png',
-      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262432/archery_mtub65.png',
-      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1776262428/weightLifting_xphfv9.png',
-      'https://res.cloudinary.com/dxqgofmdh/video/upload/q_auto/f_auto/v1776262736/video3_hvbcxk.mp4',
-    ],
-    desc: UL(
-      LI('올림픽 종목 미니게임 3종', '2024 파리 올림픽 코리아 하우스 포토부스 키오스크에 탑재된 태권도·양궁·역도 미니게임 개발. 종목마다 독립된 구조로 만들어 게임별로 따로 수정·교체할 수 있게 구성.'),
-      LI('포토부스 리모컨 입력 연동', '포토부스에서 쓰던 리모컨을 별도 장비 없이 그대로 게임 컨트롤러로 활용. 리모컨을 USB로 연결해 버튼을 누르면 지정된 키보드 키 이벤트가 들어오는 방식으로 연동. 게임은 키 입력만 처리하면 되도록 해, 방문객 누구나 버튼 하나로 바로 플레이할 수 있게 구성.'),
-      LI('종목별 조작 방식', '버튼은 하나지만 종목에 따라 리모컨을 빠르게 연타하거나 타이밍에 맞춰 누르도록 조작 방식을 다르게 설계해, 게임마다 다른 재미를 제공.'),
-      LI('게임 결과별 사진 프레임', '게임 결과(1·2·3등)에 따라 출력되는 사진 프레임이 달라지도록 구현해, 게임 성적이 인화 사진에 그대로 남는 포토 콘텐츠로 구성.')
-    ),
-    stack: ['Unity', 'C#', 'USB Remote'],
   },
   {
     name: '청주향교:가디언즈',
