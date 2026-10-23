@@ -194,9 +194,10 @@ a { color: inherit; }
     <div>
       <h3 class="sub">기술</h3>
       <dl class="skills">
-        <div><dt>Unity 콘텐츠</dt><dd>C# Scripting, MVC Pattern, LINQ, async/await, Firebase, REST API, MQTT</dd></div>
-        <div><dt>하드웨어 연동</dt><dd>Arduino, Serial Comm, Camera SDK, Printer SDK, LED Control, IoT</dd></div>
-        <div><dt>WPF 데스크톱</dt><dd>WPF, XAML, C# / .NET, VB</dd></div>
+        <div><dt>Unity</dt><dd>C#, MVC Pattern, ScriptableObject, Shader, RenderTexture, LINQ, async/await, Android, WebGL</dd></div>
+        <div><dt>WPF 데스크톱</dt><dd>WPF, XAML, .NET, VB</dd></div>
+        <div><dt>서버·API</dt><dd>Firebase, REST API, MQTT, SOLAPI (문자·알림톡)</dd></div>
+        <div><dt>하드웨어 연동</dt><dd>Arduino, Serial Comm (RS232), RFID, Canon SDK, Printer SDK, Intel RealSense, Webcam, LED·모터 제어</dd></div>
       </dl>
       <h3 class="sub">경력</h3>
       <ol class="career">
@@ -373,7 +374,7 @@ const projects = [
       LI('USB 리모컨 입력 연동', '리모컨을 USB로 연결해 버튼을 누르면 지정된 키보드 키 이벤트가 들어오는 방식으로 연동. 게임은 키 입력만 처리하면 되도록 해, 방문객 누구나 버튼 하나로 바로 플레이할 수 있게 구성.'),
       LI('게임 결과별 사진 프레임', '게임 결과(1·2·3등)에 따라 출력되는 사진 프레임이 달라지도록 구현해, 게임 성적이 인화 사진에 그대로 남는 포토 콘텐츠로 구성.')
     ),
-    stack: ['Unity', 'C#', 'Kiosk'],
+    stack: ['Unity', 'C#', 'USB Remote'],
   },
   {
     name: '국립현대미술관 청주 어린이 미디어 콘텐츠',
@@ -419,12 +420,12 @@ const projects = [
       LI('카카오 알림톡 연동과 발송 채널 분리', '유물 정보는 정해진 서식으로 보여 주기 좋은 카카오 알림톡으로, 엽서와 행사 정보는 문자로 보내도록 콘텐츠 종류에 따라 발송 채널을 나눠 구현. 알림톡은 유물 이미지를 Firebase에 올린 뒤 솔라피로 발송.'),
       LI('발송 설정과 로그', '솔라피 API는 HMAC-SHA256 서명으로 인증하고, 발신 번호·제목·본문은 설정 파일로 분리해 코드 수정 없이 바꿀 수 있게 구성. 발송 시각·제목·URL·수신 번호를 CSV 로그로 남겨 발송 내역을 확인할 수 있게 함.')
     ),
-    stack: ['Unity', 'C#', 'Firebase', 'SOLAPI', 'Kakao AlimTalk', 'RenderTexture', 'Touch Screen'],
+    stack: ['Unity', 'C#', 'Firebase', 'SOLAPI', 'Kakao AlimTalk', 'RenderTexture'],
   },
   {
     name: '보타니컬 제천',
     type: 'Photo Booth · Hardware',
-    summary: '제천 보타니컬 가든 방문객이 식물을 배경으로 사진을 촬영하고 즉석 인화할 수 있는 무인 포토부스. 찍은 사진을 QR 코드로 내려받고, 행사별 전용 프레임도 쓸 수 있음.',
+    summary: '제천 보타니컬 가든 방문객이 제천 약초를 담은 프레임으로 사진을 찍고 즉석 인화할 수 있는 무인 포토부스. 찍은 사진을 QR 코드로 내려받고, 행사별 전용 프레임도 쓸 수 있음.',
     role: '포토부스 개발, 카메라·프린터 하드웨어 연동',
     org: '플링커㈜',
     period: '2022.08.01 운영 시작 (약 2년 운영)',
@@ -460,7 +461,7 @@ const projects = [
       LI('저해상도 샘플링으로 픽셀화', '프로그램 해상도를 강제로 낮춘 뒤, LED 한 칸에 해당하는 영역의 가운데 지점 색이 흰색인지 검은색인지 판별해 8×16 픽셀 데이터로 변환. 화면 전체를 검사하지 않고 칸마다 한 점만 확인해 처리량을 줄임.'),
       LI('LED 디스플레이로 시리얼 전송', '각 칸의 판별 결과를 "1,0,1,0,…" 형식의 문자열로 만들어 시리얼 통신으로 LED 디스플레이에 전송. 데이터 형식은 하드웨어 개발자와 협의해 정함.')
     ),
-    stack: ['Unity', 'C#', 'RealSense SDK', 'Shader', 'Serial Comm'],
+    stack: ['Unity', 'C#', 'Intel RealSense', 'Shader', 'Serial Comm'],
   },
   {
     name: '청주향교:가디언즈',
@@ -480,12 +481,10 @@ const projects = [
       'https://res.cloudinary.com/dxqgofmdh/video/upload/q_auto/f_auto/v1776264200/video_ogxpw0.mp4',
     ],
     desc: UL(
-      LI('전통놀이 미니게임 3종', '신발 던지기·줄넘기·팽이치기를 소재로 한 아케이드 미니게임 개발. 게임마다 독립된 구조로 만들어 게임별로 따로 수정·교체할 수 있게 구성.'),
-      LI('USB 리모컨 입력 연동', '리모컨을 USB로 연결해 버튼을 누르면 지정된 키보드 키 이벤트가 들어오는 방식으로 연동. 축제 방문객 누구나 버튼 하나로 바로 플레이할 수 있게 구성.'),
-      LI('게임 결과별 사진 프레임', '게임 결과(1·2·3등)에 따라 출력되는 사진 프레임이 달라지도록 구현.'),
+      LI('파리 올림픽 구조 재사용', '파리 올림픽 코리아 하우스 때 만든 구조(게임별 독립 구조, USB 리모컨 입력, 1·2·3등 결과별 사진 프레임)를 그대로 재사용해, 신발 던지기·줄넘기·팽이치기를 소재로 한 전통놀이 미니게임 3종을 개발.'),
       LI('지역 축제 현장 설치', '2024 가을 청주 원도심 골목길 축제(청주향교 일원) 현장에 키오스크로 설치.')
     ),
-    stack: ['Unity', 'C#', 'Kiosk'],
+    stack: ['Unity', 'C#', 'USB Remote'],
   },
   {
     name: '감정진단제작소',
@@ -511,7 +510,7 @@ const projects = [
   },
   {
     name: 'White Elephant 애물단지',
-    type: 'Interactive · Web Cam',
+    type: 'Interactive · Webcam',
     summary: '갤러리 잔느 전시 "White Elephant 애물단지"의 체험 콘텐츠. 만화경을 단 현미경으로 사물을 비춰 촬영하고, 찍은 사진을 문자로 받아 볼 수 있게 함.',
     role: '촬영·업로드·문자 전송 개발',
     org: '플링커㈜',
@@ -527,7 +526,7 @@ const projects = [
       LI('웹캠 현미경 연동', '만화경 장치를 단 현미경을 웹캠으로 연결해, 현미경에 비친 모습을 Unity 화면에 그대로 보여 줌.'),
       LI('촬영 이미지 업로드와 문자 전송', '관람객이 원하는 장면을 캡처하면 이미지를 Firebase에 업로드하고, 해당 사진의 Firebase URL을 문자로 보내 관람객이 휴대폰에서 받아 볼 수 있게 구현.')
     ),
-    stack: ['Unity', 'C#', 'Web Cam', 'Firebase', 'SMS API'],
+    stack: ['Unity', 'C#', 'Webcam', 'Firebase', 'SMS API'],
     link: 'https://zanne.kr/blogPost/WhiteElephant', linkLabel: '관련 링크'
   },
   {
