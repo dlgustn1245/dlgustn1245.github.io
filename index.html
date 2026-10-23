@@ -194,10 +194,10 @@ a { color: inherit; }
     <div>
       <h3 class="sub">기술</h3>
       <dl class="skills">
-        <div><dt>Unity</dt><dd>C#, MVC Pattern, ScriptableObject, Shader, RenderTexture, LINQ, async/await, Android, WebGL</dd></div>
+        <div><dt>Unity</dt><dd>C#, MVC Pattern, Android, WebGL</dd></div>
         <div><dt>WPF 데스크톱</dt><dd>WPF, XAML, .NET, VB</dd></div>
         <div><dt>서버·통신</dt><dd>Firebase, REST API, MQTT, OSC, SOLAPI (문자·알림톡)</dd></div>
-        <div><dt>하드웨어 연동</dt><dd>Arduino, Serial Comm (RS232), RFID, Canon SDK, Printer SDK, Intel RealSense, Webcam, LED·모터 제어</dd></div>
+        <div><dt>하드웨어 연동</dt><dd>Arduino, Serial Comm (RS232), RFID, Canon SDK, Printer SDK, Intel RealSense</dd></div>
       </dl>
       <h3 class="sub">경력</h3>
       <ol class="career">
@@ -357,7 +357,7 @@ const projects = [
       LI('종목별 조작 방식', '종목에 따라 리모컨 연타와 타이밍 맞춰 누르기로 조작 방식을 구분.'),
       LI('게임 결과별 사진 프레임', '게임 결과(1·2·3등)에 따라 인화되는 사진 프레임이 달라지도록 구현.')
     ),
-    stack: ['Unity', 'C#', 'USB Remote'],
+    stack: ['Unity', 'C#'],
   },
   {
     name: '나이키 조던 루카 1 런칭 이벤트',
@@ -452,7 +452,7 @@ const projects = [
       LI('카카오 알림톡 연동과 발송 채널 분리', '유물 정보는 카카오 알림톡, 엽서·행사 정보는 문자로 발송 채널을 분리. 알림톡은 유물 이미지를 Firebase에 올린 뒤 솔라피로 발송.'),
       LI('발송 설정과 로그', '솔라피 API는 HMAC-SHA256 서명으로 인증하고, 발신 번호·제목·본문은 설정 파일로 분리. 발송 시각·제목·URL 등 발송 내역을 CSV 로그로 기록.')
     ),
-    stack: ['Unity', 'C#', 'Firebase', 'SOLAPI', 'Kakao AlimTalk', 'RenderTexture'],
+    stack: ['Unity', 'C#', 'Firebase', 'SOLAPI'],
   },
   {
     name: '청주향교:가디언즈',
@@ -475,7 +475,7 @@ const projects = [
       LI('파리 올림픽 구조 재사용', '파리 올림픽 코리아 하우스 때 만든 구조(게임별 독립 구조, 포토부스 리모컨 입력, 1·2·3등 결과별 사진 프레임)를 그대로 재사용해, 신발 던지기·줄넘기·팽이치기를 소재로 한 전통놀이 미니게임 3종을 개발. 게임별로 연타·타이밍 조작 적용.'),
       LI('지역 축제 현장 설치', '2024 가을 청주 원도심 골목길 축제(청주향교 일원) 현장에 키오스크로 설치.')
     ),
-    stack: ['Unity', 'C#', 'USB Remote'],
+    stack: ['Unity', 'C#'],
   },
   {
     name: '인터랙티브 LED 풀',
@@ -491,7 +491,7 @@ const projects = [
       LI('저해상도 샘플링으로 픽셀화', '프로그램 해상도를 강제로 낮춘 뒤, LED 한 칸에 해당하는 영역의 가운데 지점 색이 흰색인지 검은색인지 판별해 8×16 픽셀 데이터로 변환. 화면 전체를 검사하지 않고 칸마다 한 점만 확인해 처리량을 줄임.'),
       LI('LED 디스플레이로 시리얼 전송', '각 칸의 판별 결과를 "1,0,1,0,…" 형식의 문자열로 만들어 시리얼 통신으로 LED 디스플레이에 전송. 데이터 형식은 하드웨어 개발자와 협의해 결정.')
     ),
-    stack: ['Unity', 'C#', 'Intel RealSense', 'Shader', 'Serial Comm'],
+    stack: ['Unity', 'C#', 'Intel RealSense', 'Serial Comm'],
   },
   {
     name: '감정진단제작소',
@@ -513,7 +513,7 @@ const projects = [
       LI('Firebase 기기 연동 시도와 대체', '한 기기의 작업이 끝나면 Firebase 값을 바꾸고 다음 기기가 이를 감지해 자동으로 움직이는 파이프라인을 설계. 인터넷 연결 보드에서 Firebase 연결이 반복해서 끊기고 전원 문제로 보이는 오작동까지 생겨 제외하고, 작업자가 기기 사이를 직접 옮기며 버튼으로 작동을 시작하는 방식으로 전환.'),
       LI('버튼 입력과 도트 매트릭스 표시', '작동 시작 버튼을 추가하고, 버튼을 누른 횟수에 따라 다르게 동작하도록 구현. 누른 횟수는 도트 매트릭스에 표시.')
     ),
-    stack: ['Arduino', 'Serial Comm', 'Motor Control', 'Dot Matrix'],
+    stack: ['Arduino', 'Serial Comm'],
   },
   {
     name: 'White Elephant 애물단지',
@@ -533,7 +533,7 @@ const projects = [
       LI('웹캠 현미경 연동', '만화경 장치를 단 현미경을 웹캠으로 연결해, 현미경에 비친 모습을 Unity 화면에 그대로 출력.'),
       LI('촬영 이미지 업로드와 문자 전송', '관람객이 원하는 장면을 캡처하면 이미지를 Firebase에 업로드하고, 해당 사진의 Firebase URL을 문자로 전송.')
     ),
-    stack: ['Unity', 'C#', 'Webcam', 'Firebase', 'SMS API'],
+    stack: ['Unity', 'C#', 'Firebase'],
     link: 'https://zanne.kr/blogPost/WhiteElephant', linkLabel: '관련 링크'
   },
   {
