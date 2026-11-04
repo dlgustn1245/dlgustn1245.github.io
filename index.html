@@ -196,7 +196,7 @@ a { color: inherit; }
       <dl class="skills">
         <div><dt>Unity</dt><dd>C#, MVC Pattern, Android, WebGL</dd></div>
         <div><dt>WPF 데스크톱</dt><dd>WPF, XAML, .NET, VB</dd></div>
-        <div><dt>서버·통신</dt><dd>Firebase, REST API, MQTT, OSC, SOLAPI (문자·알림톡)</dd></div>
+        <div><dt>서버·통신</dt><dd>Firebase, REST API, MQTT, OSC</dd></div>
         <div><dt>하드웨어 연동</dt><dd>Arduino, Serial Comm (RS232), RFID, Canon SDK, Printer SDK, Intel RealSense</dd></div>
       </dl>
       <h3 class="sub">경력</h3>
@@ -357,7 +357,7 @@ const projects = [
       LI('종목별 조작 방식', '종목에 따라 리모컨 연타와 타이밍 맞춰 누르기로 조작 방식을 구분.'),
       LI('게임 결과별 사진 프레임', '게임 결과(1·2·3등)에 따라 인화되는 사진 프레임이 달라지도록 구현.')
     ),
-    stack: ['Unity', 'C#'],
+    stack: ['Unity', 'C#', 'REST API'],
   },
   {
     name: '나이키 조던 루카 1 런칭 이벤트',
@@ -448,11 +448,11 @@ const projects = [
     desc: UL(
       LI('미디어월 구성', '로컬 CSV와 이미지 파일을 읽어 유물 정보를 보여 주는 아카이빙 화면과 엽서 컬러링 체험으로 구성. 이 중 엽서 컬러링과 문자·알림톡 발송을 담당.'),
       LI('터치 엽서 컬러링', '컬러링 에셋을 활용해 빈 엽서를 터치로 색칠하도록 구현하고, 완성한 엽서는 렌더 텍스처로 캡처해 JPG 이미지로 저장.'),
-      LI('Firebase 업로드와 문자 발송', '저장한 엽서를 Firebase Storage에 올리고 다운로드 URL을 받아, 솔라피(SOLAPI) 문자 API로 관람객 휴대폰에 링크를 전송.'),
-      LI('카카오 알림톡 연동과 발송 채널 분리', '유물 정보는 카카오 알림톡, 엽서·행사 정보는 문자로 발송 채널을 분리. 알림톡은 유물 이미지를 Firebase에 올린 뒤 솔라피로 발송.'),
-      LI('발송 설정과 로그', '솔라피 API는 HMAC-SHA256 서명으로 인증하고, 발신 번호·제목·본문은 설정 파일로 분리. 발송 시각·제목·URL 등 발송 내역을 CSV 로그로 기록.')
+      LI('Firebase 업로드와 문자 발송', '저장한 엽서를 Firebase Storage에 올리고 다운로드 URL을 받아, 문자 발송 API로 관람객 휴대폰에 링크를 전송.'),
+      LI('카카오 알림톡 연동과 발송 채널 분리', '유물 정보는 카카오 알림톡, 엽서·행사 정보는 문자로 발송 채널을 분리. 알림톡은 유물 이미지를 Firebase에 올린 뒤, 문자와 같은 발송 API에 카카오 채널·템플릿·버튼 옵션을 더해 전송.'),
+      LI('발송 설정과 로그', '발송 API는 HMAC-SHA256 서명으로 인증하고, SMS의 발신 번호·제목·본문은 설정 파일로 분리. 발송 시도 시각·종류·URL을 CSV 로그로 기록.')
     ),
-    stack: ['Unity', 'C#', 'Firebase', 'SOLAPI'],
+    stack: ['Unity', 'C#', 'Firebase', 'REST API'],
   },
   {
     name: '청주향교:가디언즈',
@@ -475,7 +475,7 @@ const projects = [
       LI('파리 올림픽 구조 재사용', '파리 올림픽 코리아 하우스 때 만든 구조(게임별 독립 구조, 포토부스 리모컨 입력, 1·2·3등 결과별 사진 프레임)를 그대로 재사용해, 신발 던지기·줄넘기·팽이치기를 소재로 한 전통놀이 미니게임 3종을 개발. 게임별로 연타·타이밍 조작 적용.'),
       LI('지역 축제 현장 설치', '2024 가을 청주 원도심 골목길 축제(청주향교 일원) 현장에 키오스크로 설치.')
     ),
-    stack: ['Unity', 'C#'],
+    stack: ['Unity', 'C#', 'REST API'],
   },
   {
     name: '인터랙티브 LED 풀',
