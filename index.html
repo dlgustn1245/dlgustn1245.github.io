@@ -130,6 +130,7 @@ a { color: inherit; }
 .d-gallery img { width: 100%; height: auto; background: var(--paper-2); cursor: zoom-in; }
 .d-gallery video { width: 100%; background: #000; }
 .d-gallery figcaption { margin-top: 0.5rem; font-size: 0.8125rem; color: var(--ink-2); }
+.d-gallery.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem 1rem; }
 
 /* LIGHTBOX */
 #lightbox { position: fixed; inset: 0; z-index: 300; display: none; align-items: center; justify-content: center; padding: 4vh 4vw; background: rgba(20,18,15,0.94); cursor: zoom-out; }
@@ -142,6 +143,7 @@ a { color: inherit; }
 }
 @media (max-width: 720px) {
   .works { grid-template-columns: 1fr; }
+  .d-gallery.grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 480px) {
   .skills div, .career li, .d-meta div, .links li { grid-template-columns: 1fr; gap: 0.2rem; }
@@ -391,6 +393,17 @@ const projects = [
     imgSrc: 'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1791907485/4.logo_r18zi0.png',
     imgFit: 'contain',
     pixel: true,
+    galleryGrid: true,
+    gallery: [
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1793778834/01_title_stx6vg.jpg',
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1793778834/02_guide_zxtk4b.jpg',
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1793778834/03_stage_select_tkq5ze.jpg',
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1793778834/04_loading_kbhjv3.jpg',
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1793778833/05_qix_drawing_thaqoe.jpg',
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1793778834/06_qix_clear_nzzsx0.jpg',
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1793778835/07_ending_a78oqb.jpg',
+      'https://res.cloudinary.com/dxqgofmdh/image/upload/q_auto/f_auto/v1793778835/08_credit_pky5qv.jpg',
+    ],
     desc: UL(
       LI('땅따먹기 퍼즐 게임 개발', '선을 그어 영역을 차지할수록 숨겨진 캐릭터 그림이 드러나는 고전 Qix 방식 게임. 스테이지 설정(제한 시간·목숨·클리어 비율·적 구성)을 ScriptableObject로 분리.'),
       LI('칸과 변을 분리한 격자 설계', '게임판을 칸(확보 여부)과 변(이동 가능 여부) 두 격자로 나눠 관리. 플레이어는 꼭짓점 위에서 변을 따라 움직이므로 안쪽이 채워져도 테두리를 계속 다닐 수 있고, 이동을 꼭짓점 단위로 끊어 빠른 이동 중에도 궤적 빈틈 방지.'),
@@ -623,7 +636,7 @@ function renderModal(p, i) {
     <p class="d-sum">${p.summary}</p>
     <dl class="d-meta">${meta}</dl>
     ${p.desc}
-    ${gallery && `<div class="d-gallery">${gallery}</div>`}`;
+    ${gallery && `<div class="d-gallery${p.galleryGrid ? ' grid' : ''}">${gallery}</div>`}`;
 }
 
 function openModal(i) {
