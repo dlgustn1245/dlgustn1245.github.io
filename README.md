@@ -34,6 +34,7 @@ Unity 콘텐츠 개발자 이현수의 포트폴리오 사이트입니다.
 | `gallery` | 상세 화면 이미지·영상 주소 목록 (Cloudinary `video/upload` 주소는 영상으로 표시) |
 | `galleryGrid` | `true`면 갤러리를 한 줄에 4장(좁은 화면은 2장)씩 표시. 세로로 긴 화면 캡처용 |
 | `desc` | 주요 구현 항목. `UL(LI('제목', '내용'), ...)` 형식 |
+| `notes` | 갤러리 아래 "구현 노트". 더 궁금한 사람을 위한 기술 상세. `desc`와 같은 형식 |
 | `stack` | 기술 태그 |
 | `link`, `linkLabel`, `repo` | 관련 링크, 링크 이름, GitHub 저장소 |
 
